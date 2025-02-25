@@ -11,10 +11,15 @@ app.use(cors({
     origin: ['http://localhost:5174','https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 
 app.use(bodyParser.json());
+
+app.options('*', cors());
+
 app.listen(port,()=>{
     console.log(`Backend is running on http://localhost:${port}`);
 })

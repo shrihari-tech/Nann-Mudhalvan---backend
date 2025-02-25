@@ -636,14 +636,21 @@ const Home = () => {
 
   const fetchTasks = async () => {
     try {
+      // const response = await axios.get('https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app/task/getTask', {
+      //   headers: {
+      //     'Authorization': 'Bearer YOUR_AUTH_TOKEN' // If your API requires token-based auth
+      //   },
+      //   withCredentials: true // If your API uses cookie-based auth
+      // });
+      // const data = await response.json();
+      // setTasks(data);
+      // setLoading(false);
       const response = await axios.get('https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app/task/getTask', {
-        headers: {
-          'Authorization': 'Bearer YOUR_AUTH_TOKEN' // If your API requires token-based auth
-        },
-        withCredentials: true // If your API uses cookie-based auth
+        withCredentials: true
       });
-      const data = await response.json();
-      setTasks(data);
+      
+      // Change this line from response.json() to response.data since axios already parses JSON
+      setTasks(response.data);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching tasks:', error);
