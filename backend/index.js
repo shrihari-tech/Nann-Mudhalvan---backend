@@ -7,8 +7,13 @@ const cors = require('cors');
 const dontenv = require('dotenv');
 dontenv.config();
 
+app.use(cors({
+    origin: ['http://localhost:5174','https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.use(cors());
 app.use(bodyParser.json());
 app.listen(port,()=>{
     console.log(`Backend is running on http://localhost:${port}`);

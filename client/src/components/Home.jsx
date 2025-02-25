@@ -577,7 +577,7 @@ import React, { useState, useEffect, useId, useRef } from 'react';
 import { Calendar, Clock, User, AlertCircle, Filter, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useOutsideClick } from '../hooks/use-outside-click';
-
+import axios from 'axios';
 const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -636,7 +636,12 @@ const Home = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:3000/task/getTask');
+      const response = await axios.get('https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app/task/getTask', {
+        headers: {
+          'Authorization': 'Bearer YOUR_AUTH_TOKEN' // If your API requires token-based auth
+        },
+        withCredentials: true // If your API uses cookie-based auth
+      });
       const data = await response.json();
       setTasks(data);
       setLoading(false);
