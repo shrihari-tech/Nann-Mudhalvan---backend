@@ -7,19 +7,45 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
+// const corsOption = {
+//     origin: [
+//         'http://localhost:5174',
+//         'http://localhost:5173',
+//         'https://nann-mudhalvan-gov.vercel.app/',
+//         'https://nann-mudhalvan-kgm.vercel.app',
+//     ],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204
+// }
+
 const corsOption = {
-    origin: [
-        'http://localhost:5174',
-        'http://localhost:5173',
-        'https://nann-mudhalvan-gov.vercel.app/',
-        'https://nann-mudhalvan-kgm.vercel.app',
-    ],
+    origin: function(origin, callback) {
+        const allowedOrigins = [
+            'http://localhost:5173',
+            'http://localhost:5174',
+            'https://nann-mudhalvan-gov.vercel.app',
+            'https://nann-mudhalvan-kgm.vercel.app',
+        ];
+        
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
     preflightContinue: false,
     optionsSuccessStatus: 204
-}
+};
+
 app.use(cors(corsOption));
 
 app.use(bodyParser.json());
