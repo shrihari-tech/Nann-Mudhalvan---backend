@@ -11,7 +11,6 @@ const corsOption = {
     origin: [
         'https://nann-mudhalvan-gov.vercel.app/',
         'https://nann-mudhalvan-kgm.vercel.app',
-        'http://localhost:5174',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
