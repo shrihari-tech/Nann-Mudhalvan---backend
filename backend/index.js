@@ -28,6 +28,7 @@ const corsOption = {
             'http://localhost:5174',
             'https://nann-mudhalvan-gov.vercel.app',
             'https://nann-mudhalvan-kgm.vercel.app',
+            'https://nann-mudhalvan-admin.vercel.app'
         ];
         
         // Allow requests with no origin (like mobile apps or curl requests)
