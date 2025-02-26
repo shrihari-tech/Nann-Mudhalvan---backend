@@ -319,7 +319,7 @@ const AllSchedules = () => {
             </div>
             <button
               onClick={handleCreateTask}
-              className="flex items-center px-4 py-2 bg-white text-[#c2560c] rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
+              className="flex items-center px-4 py-2 bg-white text-[#C29A6B] rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
             >
               <Plus className="mr-2 h-4 w-4" />
               Create Schedule
@@ -357,7 +357,7 @@ const AllSchedules = () => {
 
         {/* Filter and Search Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white p-4 rounded-lg shadow-sm">
+          {/* <div className="bg-white p-4 rounded-lg shadow-sm">
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Priority</label>
             <select
               value={filterPriority}
@@ -369,7 +369,7 @@ const AllSchedules = () => {
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
-          </div>
+          </div> */}
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status</label>
             <select
@@ -778,7 +778,7 @@ const AllSchedules = () => {
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-[#c2560c] text-white rounded-lg hover:bg-[#c2560c]/90 transition-colors"
+                    className="px-4 py-2 bg-[#304443] text-white rounded-lg hover:bg-[#304443]/90 transition-colors"
                   >
                     {isEditing ? "Save Changes" : "Create Task"}
                   </button>

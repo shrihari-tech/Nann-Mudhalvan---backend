@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     setIsError(false);
 
     try {
-      const response = await axios.post('http://localhost:3000/user/forget-password', { email });
+      const response = await axios.post('https://nann-mudhalvan-kgm.vercel.app/user/forget-password', { email });
 
       console.log(response)
       setMessage(response.data.message);
