@@ -32,7 +32,11 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/task/getTask');
+        // const response = await axios.get('https://nann-mudhalvan-kgm.vercel.app/task/getTask');
+        const response = await axios.get('https://nann-mudhalvan-kgm.vercel.app/task/getTask', {
+          withCredentials: true
+        });
+
         setTasks(response.data);
       } catch (error) {
         console.error('Error fetching tasks:', error);

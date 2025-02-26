@@ -4,21 +4,26 @@ const port = 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const dontenv = require('dotenv');
-dontenv.config();
+const dotenv = require('dotenv');
+dotenv.config();
 
-app.use(cors({
-    origin: ['http://localhost:5174','https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app','http://localhost:5173'],
+const corsOption = {
+    origin: [
+        'http://localhost:5173',
+        'https://nann-mudhalvan-kgm.vercel.app',
+        'http://localhost:5174',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
     preflightContinue: false,
     optionsSuccessStatus: 204
-}));
+}
+app.use(cors(corsOption));
 
 app.use(bodyParser.json());
 
-app.options('*', cors());
+app.options('*', cors(corsOption));
 
 app.listen(port,()=>{
     console.log(`Backend is running on http://localhost:${port}`);

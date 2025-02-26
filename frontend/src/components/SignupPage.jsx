@@ -106,7 +106,7 @@ const SignupPage = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:3000/user/register', formData);
+        const response = await axios.post('https://nann-mudhalvan-kgm.vercel.app/user/register', formData);
         console.log('User registered successfully:', response.data);
         navigate('/');
         // Handle successful registration (e.g., redirect to login page)

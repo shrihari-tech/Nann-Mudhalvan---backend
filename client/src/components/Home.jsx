@@ -645,7 +645,7 @@ const Home = () => {
       // const data = await response.json();
       // setTasks(data);
       // setLoading(false);
-      const response = await axios.get('https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app/task/getTask', {
+      const response = await axios.get('https://nann-mudhalvan-kgm.vercel.app/task/getTask', {
         withCredentials: true
       });
       
