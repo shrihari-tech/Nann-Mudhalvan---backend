@@ -8,7 +8,7 @@ const dontenv = require('dotenv');
 dontenv.config();
 
 app.use(cors({
-    origin: ['http://localhost:5174','https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app'],
+    origin: ['http://localhost:5174','https://nann-mudhalvan-cl4dmw64h-shriharitechs-projects.vercel.app','http://localhost:5173'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
