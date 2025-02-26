@@ -9,6 +9,8 @@ dotenv.config();
 
 const corsOption = {
     origin: [
+        'http://localhost:5174',
+        'http://localhost:5173',
         'https://nann-mudhalvan-gov.vercel.app/',
         'https://nann-mudhalvan-kgm.vercel.app',
     ],
