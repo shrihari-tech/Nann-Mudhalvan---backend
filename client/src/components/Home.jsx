@@ -755,7 +755,8 @@ const Home = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="bg-[#304443] rounded-xl p-6 md:p-8 mb-2 text-white shadow-lg">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
+          <div className="flex items-center gap-4">
+            <img src = "./kgm.webp" alt="NannMudhalvan" className="bg-white w-44 h-36 mx-auto" />
             <img src="/logo.png" alt="NannMudhalvan" className="bg-white w-44 h-36 mx-auto" />
           </div>
           <div className="flex items-center justify-end font-bold gap-2 text-[#C29A6B] text-3xl">
@@ -825,7 +826,7 @@ const Home = () => {
                   <div className="flex items-center text-[#C29A6B]">
                     <Calendar className="h-5 w-5 mr-2" />
                     <span className="text-sm">
-                      {new Date(task.start_date).toLocaleDateString()} - {new Date(task.end_date).toLocaleDateString()}
+                      {new Date(task.start_date).toLocaleDateString('en-GB')} - {new Date(task.end_date).toLocaleDateString('en-GB')}
                     </span>
                   </div>
 
@@ -899,13 +900,13 @@ const Home = () => {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-700 mb-1">Start Date</label>
                       <p className="text-gray-600 dark:text-gray-700">
-                        {new Date(selectedTask.start_date).toLocaleDateString()}
+                        {new Date(selectedTask.start_date).toLocaleDateString('en-GB')}
                       </p>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-700 mb-1">End Date</label>
                       <p className="text-gray-600 dark:text-gray-700">
-                        {new Date(selectedTask.end_date).toLocaleDateString()}
+                        {new Date(selectedTask.end_date).toLocaleDateString('en-GB')}
                       </p>
                     </div>
                   </div>
