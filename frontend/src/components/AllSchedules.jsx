@@ -72,21 +72,54 @@ const AllSchedules = () => {
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({});
 
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     try {
+  //       const userId = sessionStorage.getItem('user');
+  //       if (userId) {
+  //         const response = await axios.get(`https://nann-mudhalvan-kgm.vercel.app/user/${userId}`);
+  //         setTasks(Array.isArray(response.data) ? response.data : []);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching tasks:', error);
+  //     }
+  //   };
+
+  //   fetchTasks();
+  // }, []);
   useEffect(() => {
     const fetchTasks = async () => {
       try {
         const userId = sessionStorage.getItem('user');
         if (userId) {
           const response = await axios.get(`https://nann-mudhalvan-kgm.vercel.app/user/${userId}`);
-          setTasks(Array.isArray(response.data) ? response.data : []);
+          let fetchedTasks = Array.isArray(response.data) ? response.data : [];
+          
+          // Check and update expired tasks
+          fetchedTasks = await updateExpiredTasks(fetchedTasks);
+          
+          setTasks(fetchedTasks);
         }
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
-
+  
     fetchTasks();
-  }, []);
+    
+    // Set up an interval to check for expired tasks periodically
+    const interval = setInterval(() => {
+      if (tasks.length > 0) {
+        updateExpiredTasks(tasks).then(updatedTasks => {
+          if (JSON.stringify(updatedTasks) !== JSON.stringify(tasks)) {
+            setTasks(updatedTasks);
+          }
+        });
+      }
+    }, 3600000); // Check every hour
+    
+    return () => clearInterval(interval);
+  }, [tasks]); // Add tasks as a dependency
 
   const handleEditClick = () =>{
     setModalMode('edit');
@@ -305,11 +338,49 @@ const AllSchedules = () => {
     setSearchQuery("");
   }
 
+  // Add this function after your state declarations
+const updateExpiredTasks = async (taskList) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset time to beginning of day for accurate comparison
+  
+  const tasksToUpdate = taskList.filter(task => 
+    task.status !== "completed" && 
+    new Date(task.end_date) < today
+  );
+  
+  if (tasksToUpdate.length > 0) {
+    try {
+      // Update tasks in the database
+      for (const task of tasksToUpdate) {
+        await axios.put(`https://nann-mudhalvan-kgm.vercel.app/task/${task._id}/updateTask`, {
+          ...task,
+          status: "completed"
+        });
+      }
+      
+      // Update tasks in local state
+      const updatedTasks = taskList.map(task => 
+        (task.status !== "completed" && new Date(task.end_date) < today)
+          ? { ...task, status: "completed" }
+          : task
+      );
+      
+      return updatedTasks;
+    } catch (error) {
+      console.error('Error updating expired tasks:', error);
+      return taskList;
+    }
+  }
+  
+  return taskList;
+};
+
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
       <Sidebar />
       <main className="flex-1 p-4 md:p-8 overflow-hidden">
         {/* Header Section */}
+        <img src="/kgm.webp" alt="KGM" className="w-40 object-cover" />
         <div className="bg-[#304443] rounded-xl p-6 md:p-8 mb-2 text-white shadow-lg">
         <div className="flex items-center justify-end font-bold gap-2 text-[#C29A6B] text-xl">{currentTime}</div>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">

@@ -153,6 +153,7 @@ const Dashboard = () => {
       <Sidebar />
       <main className="flex-1 p-4 md:p-8 overflow-hidden">
         {/* Header Section */}
+            <img src="/kgm.webp" alt="KGM" className="w-40 object-cover" />
         <div className="bg-[#304443] rounded-xl p-6 md:p-8 mb-2 text-white shadow-lg">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
