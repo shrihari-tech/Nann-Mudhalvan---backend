@@ -755,9 +755,13 @@ const Home = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="bg-[#304443] rounded-xl p-6 md:p-8 mb-2 text-white shadow-lg">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <img src = "./kgm.webp" alt="NannMudhalvan" className="bg-white w-44 h-36 mx-auto" />
             <img src="/logo.png" alt="NannMudhalvan" className="bg-white w-44 h-36 mx-auto" />
+          </div> */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-4">
+            <img src="./kgm.webp" alt="NannMudhalvan" className="bg-white w-36 h-28 sm:w-44 sm:h-36 mx-auto" />
+            <img src="/logo.png" alt="NannMudhalvan" className="bg-white w-36 h-28 sm:w-44 sm:h-36 mx-auto mt-4 sm:mt-0" />
           </div>
           <div className="flex items-center justify-end font-bold gap-2 text-[#C29A6B] text-3xl">
             {currentTime}
